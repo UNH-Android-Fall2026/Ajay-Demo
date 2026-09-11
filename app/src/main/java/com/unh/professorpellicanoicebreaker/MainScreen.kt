@@ -23,7 +23,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MainScreen(modifier: Modifier) {
+fun MainScreen(
+    modifier: Modifier = Modifier,
+    onGetQuestionClicked: () -> Unit,
+    onSubmitClicked: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -82,7 +86,7 @@ fun MainScreen(modifier: Modifier) {
 
         Button(
             onClick = {
-                Log.d("IcebreakerF2026", "Pressed")
+                onGetQuestionClicked()
             },
             modifier = Modifier.padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
@@ -115,7 +119,7 @@ fun MainScreen(modifier: Modifier) {
 
         Button(
             onClick = {
-                Log.d("IcebreakerF2026", "Pressed")
+                onSubmitClicked()
             },
             modifier = Modifier.padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
@@ -137,6 +141,7 @@ fun MainScreen(modifier: Modifier) {
 @Composable
 fun MainScreenPreview(){
     MainScreen(
-        modifier = TODO()
+        onGetQuestionClicked = {},
+        onSubmitClicked = {}
     )
 }

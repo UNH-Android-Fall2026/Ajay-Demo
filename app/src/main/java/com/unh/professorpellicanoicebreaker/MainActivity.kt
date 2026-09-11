@@ -1,6 +1,7 @@
 package com.unh.professorpellicanoicebreaker
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,9 +18,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             ProfessorPellicanoIcebreakerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(modifier = Modifier.padding(innerPadding))
+                    MainScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        onGetQuestionClicked = { getQuestionsFromFirebase() },
+                        onSubmitClicked = { setResponseToFirebase() }
+                    )
                 }
             }
         }
     }
+
+    private fun getQuestionsFromFirebase(){
+        Log.d("IcebreakerF2026", "Get From DB")
+    }
+
+    private fun setResponseToFirebase(){
+        Log.d("IcebreakerF2026", "Save To DB")
+    }
+
 }
