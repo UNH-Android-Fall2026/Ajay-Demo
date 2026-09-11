@@ -45,6 +45,8 @@ fun MainScreen() {
         var firstName by remember { mutableStateOf("") }
         var lastName by remember { mutableStateOf("") }
         var prefName by remember { mutableStateOf("") }
+        var question by remember { mutableStateOf("Test Question") }
+        var answer by remember { mutableStateOf("") }
 
         OutlinedTextField(
             enabled = true,
@@ -91,6 +93,39 @@ fun MainScreen() {
         ) {
             Text(
                 text = "Get a new Random Question",
+                fontSize = 18.sp
+            )
+        }
+
+        Text(
+            text = question,
+            fontSize = 18.sp,
+            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp)
+        )
+
+        OutlinedTextField(
+            enabled = true,
+            singleLine = true,
+            modifier = Modifier.padding(top = 10.dp),
+            value = answer,
+            onValueChange = {answer = it},
+            label = {
+                Text(stringResource(R.string.answer_text))
+            }
+        )
+
+        Button(
+            onClick = {
+                Log.d("IcebreakerF2026", "Pressed")
+            },
+            modifier = Modifier.padding(top = 20.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Transparent,
+                contentColor = Color.Blue
+            )
+        ) {
+            Text(
+                text = "Submit",
                 fontSize = 18.sp
             )
         }
