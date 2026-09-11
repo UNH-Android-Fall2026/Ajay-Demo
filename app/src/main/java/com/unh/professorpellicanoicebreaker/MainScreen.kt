@@ -1,7 +1,6 @@
 package com.unh.professorpellicanoicebreaker
 
 import android.util.Log
-import android.widget.Button
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MainScreen() {
+fun MainScreen(modifier: Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -137,5 +136,7 @@ fun MainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview(){
-    MainScreen()
+    MainScreen(
+        modifier = TODO()
+    )
 }
