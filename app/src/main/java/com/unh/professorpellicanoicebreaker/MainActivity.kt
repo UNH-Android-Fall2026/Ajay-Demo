@@ -15,6 +15,7 @@ import com.unh.professorpellicanoicebreaker.ui.theme.ProfessorPellicanoIcebreake
 
 class MainActivity : ComponentActivity() {
     private val db = Firebase.firestore
+    private var questionBank: MutableList<Questions>? = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,17 @@ class MainActivity : ComponentActivity() {
 
     private fun getQuestionsFromFirebase(){
         Log.d("IcebreakerF2026", "Get From DB")
+        db.collection("Questions")
+            .get()
+            .addOnSuccessListener { result ->
+                questionBank = mutableListOf()
+                for(document in result) {
+                    val question = document.toObject(Questions::class.java)
+                    questionBank!!.add(question)
+                    Log.d("IcebreakerF2026", "$question")
+                }
+
+            }
 
     }
 
