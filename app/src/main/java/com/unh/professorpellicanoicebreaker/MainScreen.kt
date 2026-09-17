@@ -9,6 +9,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,8 +27,9 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    onGetQuestionClicked: () -> Unit,
-    onSubmitClicked: () -> Unit
+    queryDbOnStart: () -> Unit,
+    onGetQuestionClicked: () -> String = { "Placeholder" },
+    onSubmitClicked: (firstName: String, lastName: String, prefName: String, question: String, answer: String) -> Unit
 ) {
 
     var firstName by remember { mutableStateOf("") }
@@ -37,6 +39,9 @@ fun MainScreen(
     var answer by remember { mutableStateOf("") }
     var focusManager = LocalFocusManager.current
 
+    LaunchedEffect(Unit) {
+        queryDbOnStart()
+    }
 
     Column(
         modifier = Modifier
@@ -90,7 +95,7 @@ fun MainScreen(
 
         Button(
             onClick = {
-                onGetQuestionClicked()
+                question = onGetQuestionClicked()
             },
             modifier = Modifier.padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
@@ -123,7 +128,7 @@ fun MainScreen(
 
         Button(
             onClick = {
-                onSubmitClicked()
+                onSubmitClicked(firstName, lastName, prefName, question, answer)
                 firstName = ""
                 lastName = ""
                 prefName = ""
@@ -150,7 +155,8 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview(){
     MainScreen(
-        onGetQuestionClicked = {},
-        onSubmitClicked = {}
+        queryDbOnStart = {},
+        onGetQuestionClicked = { "New preview question" },
+        onSubmitClicked = {_, _, _, _, _ ->}
     )
 }

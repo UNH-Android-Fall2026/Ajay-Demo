@@ -11,6 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.pipeline.AggregateFunction.Companion.first
 import com.unh.professorpellicanoicebreaker.ui.theme.ProfessorPellicanoIcebreakerTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,11 +26,21 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainScreen(
                         modifier = Modifier.padding(innerPadding),
-                        onGetQuestionClicked = { getQuestionsFromFirebase() },
-                        onSubmitClicked = { setResponseToFirebase() }
+                        queryDbOnStart = { getQuestionsFromFirebase() },
+                        onGetQuestionClicked = { getQuestion() },
+                        onSubmitClicked = { first, last, pref, question, answer ->
+                            setResponseToFirebase(first, last, pref, answer, question) }
                     )
                 }
             }
+        }
+    }
+
+    private fun getQuestion(): String {
+        return if(questionBank?.isNotEmpty() == true){
+            questionBank!!.random().text
+        } else {
+            "No questions available."
         }
     }
 
@@ -44,13 +55,39 @@ class MainActivity : ComponentActivity() {
                     questionBank!!.add(question)
                     Log.d("IcebreakerF2026", "$question")
                 }
-
             }
-
+            .addOnFailureListener { err ->
+                Log.w("IcebreakerF2026", "error:", err)
+            }
     }
 
-    private fun setResponseToFirebase(){
+    private fun setResponseToFirebase(
+        firstName: String,
+        lastName: String,
+        prefName: String,
+        answer: String,
+        question: String,
+    ){
         Log.d("IcebreakerF2026", "Save To DB")
+
+        val student = hashMapOf(
+            "firstname" to firstName,
+            "lastname" to lastName,
+            "prefname" to prefName,
+            "answer" to answer,
+            "question" to question,
+            "class" to "Android-F26"
+        )
+
+        db.collection("Students")
+            .add(student)
+            .addOnSuccessListener { docRef ->
+                Log.d("IcebreakerF2026", "Saved with ID: ${docRef.id}")
+
+            }
+            .addOnFailureListener { err ->
+                Log.w("IcebreakerF2026", "error saving:", err)
+            }
     }
 
 }
