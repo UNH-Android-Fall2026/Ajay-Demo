@@ -1,4 +1,4 @@
-package com.unh.professorpellicanoicebreaker.ui.theme
+package com.unh.ajicebreaker.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun ProfessorPellicanoIcebreakerTheme(
+fun AjIcebreakerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

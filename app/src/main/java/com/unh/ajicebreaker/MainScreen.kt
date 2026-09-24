@@ -1,4 +1,4 @@
-package com.unh.professorpellicanoicebreaker
+package com.unh.ajicebreaker
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column

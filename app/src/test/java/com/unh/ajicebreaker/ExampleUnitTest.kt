@@ -1,4 +1,4 @@
-package com.unh.professorpellicanoicebreaker
+package com.unh.ajicebreaker
 
 import org.junit.Test
 

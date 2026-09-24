@@ -1,17 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.gms.google-services")
+    alias(libs.plugins.google.gms.google.services)
+    //id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.unh.professorpellicanoicebreaker"
+    namespace = "com.unh.ajicebreaker"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.unh.professorpellicanoicebreaker"
+        applicationId = "com.unh.ajicebreaker"
         minSdk = 33
         targetSdk = 37
         versionCode = 1
@@ -52,7 +53,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

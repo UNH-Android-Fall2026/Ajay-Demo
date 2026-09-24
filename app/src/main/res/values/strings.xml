@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Professor Pellicano Icebreaker</string>
-    <string name="header_text">Icebreaker For Android</string>
-    <string name="header_sub_text">Made By Prof Pellicano</string>
-    <string name="first_name_text">First Name</string>
-    <string name="last_name_text">Last Name</string>
-    <string name="pref_name_text">Pref Name</string>
-    <string name="answer_text">Answer</string>
+    <string name="app_name">Aj Icebreaker</string>
+    <string name="header_text">Lets break Ice</string>
+    <string name="header_sub_text">AJ — Question Asker</string>
+    <string name="first_name_text">First Name (Don\'t Lie)</string>
+    <string name="last_name_text">Last Name (Optional 😏)</string>
+    <string name="pref_name_text">Unique Name</string>
+    <string name="answer_text">In God\'s Name, I Swear It\'s True 😂</string>
 </resources>

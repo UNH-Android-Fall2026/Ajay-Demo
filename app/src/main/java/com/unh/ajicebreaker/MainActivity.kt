@@ -1,4 +1,4 @@
-package com.unh.professorpellicanoicebreaker
+package com.unh.ajicebreaker
 
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.pipeline.AggregateFunction.Companion.first
-import com.unh.professorpellicanoicebreaker.ui.theme.ProfessorPellicanoIcebreakerTheme
+import com.unh.ajicebreaker.ui.theme.AjIcebreakerTheme
 
 class MainActivity : ComponentActivity() {
     private val db = Firebase.firestore
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ProfessorPellicanoIcebreakerTheme {
+            AjIcebreakerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainScreen(
                         modifier = Modifier.padding(innerPadding),
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
     private fun getQuestion(): String {
         return if(questionBank?.isNotEmpty() == true){
-            questionBank!!.random().text
+            questionBank!!.random().question
         } else {
             "No questions available."
         }
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
     private fun getQuestionsFromFirebase(){
         Log.d("IcebreakerF2026", "Get From DB")
-        db.collection("Questions")
+        db.collection("questions")
             .get()
             .addOnSuccessListener { result ->
                 questionBank = mutableListOf()
@@ -89,5 +89,4 @@ class MainActivity : ComponentActivity() {
                 Log.w("IcebreakerF2026", "error saving:", err)
             }
     }
-
 }

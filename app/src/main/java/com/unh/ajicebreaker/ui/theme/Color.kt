@@ -1,4 +1,4 @@
-package com.unh.professorpellicanoicebreaker.ui.theme
+package com.unh.ajicebreaker.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
